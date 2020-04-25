@@ -187,4 +187,4 @@ function scoreRender() {
 }
 // change the baclground color 
 
-document.body.style.backgroundColor = `ligthgrey`;
+document.body.style.backgroundColor = `lightgrey`;
