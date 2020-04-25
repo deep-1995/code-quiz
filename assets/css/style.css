@@ -20,7 +20,7 @@
 #timeGauge{
     height : 10px;
     border-radius: 10px;
-    
+    background-color: mediumseagreen; 
     margin-top : -10px;
     margin-left : 25px;
 }

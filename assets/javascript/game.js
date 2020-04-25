@@ -17,32 +17,32 @@ const scoreDiv = document.getElementById("scoreContainer");
 
 let questions = [
     {
-        question: "	A piece of ice is dropped in a vesel containing kerosene. When ice melts, the level of kerosene will",
+        question: "1. A piece of ice is dropped in a vesel containing kerosene. When ice melts, the level of kerosene will",
         imgSrc: "assets/image/ice.png",
-        choiceA: "Rise",
-        choiceB: "Fall",
-        choiceC: "Remain Same",
+        choiceA: "A. Rise",
+        choiceB: "B.Fall",
+        choiceC: "C.Remain Same",
         correct: "B"
     }, {
-        question: "	Young's modulus is the property of",
+        question: "2. Young's modulus is the property of",
         imgSrc: "assets/image/young.png",
-        choiceA: "Liquid only",
-        choiceB: "Gas only",
-        choiceC: "Solid only",
+        choiceA: "A.Liquid only",
+        choiceB: "B.Gas only",
+        choiceC: "C.Solid only",
         correct: "C"
     }, {
-        question: "Joule is the unit of:",
+        question: "3. Joule is the unit of:",
         imgSrc: "assets/image/joule.png",
-        choiceA: "Temperature",
-        choiceB: "Pressure",
-        choiceC: "Energy",
+        choiceA: "A.Temperature",
+        choiceB: "B.Pressure",
+        choiceC: "C.Energy",
         correct: "C"
     }, {
-        question: "	What is the scale used for measuring the intensity of the earthquake?",
+        question: "4. What is the scale used for measuring the intensity of the earthquake?",
         imgSrc: "assets/image/earthquake.png",
-        choiceA: "Metric Scale",
-        choiceB: "Richter Scale",
-        choiceC: "Quake Scale",
+        choiceA: "A.Metric Scale",
+        choiceB: "B.Richter Scale",
+        choiceC: "C.Quake Scale",
         correct: "B"
     }
 
@@ -58,6 +58,7 @@ const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
+let wrong = 0;
 
 // render a question
 function renderQuestion() {
@@ -75,13 +76,29 @@ start.addEventListener("click", startQuiz);
 // start quiz
 function startQuiz() {
     start.style.display = "none";
+    message.style.display = "none";
+
     renderQuestion();
     quiz.style.display = "block";
+    heading.style.display = "block";
     renderProgress();
     renderCounter();
     TIMER = setInterval(renderCounter, 1000); // 1000ms = 1s
 }
 
+// greeting message
+var today = new Date()
+var curHr = today.getHours()
+
+if (curHr >= 0 && curHr < 6) {
+    message.innerHTML = 'What are you doing that early?';
+} else if (curHr >= 6 && curHr <= 12) {
+    message.innerHTML = 'Good Morning';
+} else if (curHr >= 12 && curHr < 17) {
+    message.innerHTML = 'Good Afternoon';
+} else {
+    message.innerHTML = 'Good Evening';
+}
 // render progress
 function renderProgress() {
     for (let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
@@ -121,6 +138,7 @@ function checkAnswer(answer) {
         answerIsCorrect();
     } else {
         // answer is wrong
+        wrong++
         // change progress color to red
         answerIsWrong();
     }
@@ -143,12 +161,15 @@ function answerIsCorrect() {
 
 // answer is Wrong
 function answerIsWrong() {
-    document.getElementById(runningQuestion).style.backgroundColor = "#f00";
+    incorrect.textContent = "incorrect :" + wrong;
 }
 
 // score render
 function scoreRender() {
     scoreDiv.style.display = "block";
+    quiz.style.display = "none";
+    heading.textContent = "Result";
+
 
     // calculate the amount of question percent answered by the user
     const scorePerCent = Math.round(100 * score / questions.length);
@@ -158,11 +179,12 @@ function scoreRender() {
         (scorePerCent >= 60) ? "assets/image/4.png" :
             (scorePerCent >= 40) ? "assets/image/3.png" :
                 (scorePerCent >= 20) ? "assets/image/2.png" :
-                    "img/1.png";
+                    "assets/image/1.png";
 
     scoreDiv.innerHTML = "<img src=" + img + ">";
     scoreDiv.innerHTML += "<p>" + scorePerCent + "%</p>";
+
 }
 // change the baclground color 
 
-document.body.style.backgroundColor = `grey`;
+document.body.style.backgroundColor = `ligthgrey`;

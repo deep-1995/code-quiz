@@ -21,10 +21,10 @@
 
     <div class="container">
 
-        <h1 class="center" style="color:magenta;" id="message">message</h1>
-        <h4 class="center" style="color:grey;" id="heading">Quiz Game</h4>
+        <h1 class="center" style="color:pink;" id="message">message</h1>
+        <h3 class="center bold" style="color:green;display:none;" id="heading">Quiz Qiuestions</h3>
 
-        <h2 class="center" style="color:red;" id="start">Start Quiz!</h2>
+        <h2 class="center" style="color:red;" display="block" id="start">Start Quiz!</h2>
         <div class="card text-center" id="quiz" style="display:none">
 
             <div class="card-body center">
@@ -44,22 +44,23 @@
 
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <div id="timer">
-                        <div id="counter"></div>
-                        <div id="btimeGauge"></div>
-                        <div id="timeGauge"></div>
-                    </div>
-                    <div class="col right" id="correct"></div>
+            <h4 class="col right" id="correct"></h4>
+            <h4 class="col right" id="incorrect"></h4>
 
-                    <div class="progress center">
-                        <div id="progress"></div>
-                    </div>
-                </div>
-
+            <div id="timer">
+                <div id="counter"></div>
+                <div id="btimeGauge"></div>
+                <div id="timeGauge"></div>
             </div>
-            <div class="col align-self-end" id="correct"></div>
+            <h4 class="col right" id="correct"></h4>
+
+            <div class="progress center">
+                <div id="progress"></div>
+            </div>
+
+
+
+            <div class="text-right" id="correct"></div>
         </div>
         <div id="scoreContainer" style="display: none"></div>
 
