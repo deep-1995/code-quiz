@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Head tag start here-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--add bootstrap link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--use favicon link-->
+    <link rel="shortcut icon" type="image/png" href="assets/image/quiz.png">
+    <!--add css style sheet-->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Quiz-Game</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 class="center" style="color:magenta;" id="message">message</h1>
+        <h4 class="center" style="color:grey;" id="heading">Quiz Game</h4>
+
+        <h2 class="center" style="color:red;" id="start">Start Quiz!</h2>
+        <div class="card text-center" id="quiz" style="display:none">
+
+            <div class="card-body center">
+                <h3 class="card-title" id="question">question</h3>
+                <div id="qImg"></div>
+                <div id="choices">
+
+                    <h3 class="list-group-item center " id="A" onclick="checkAnswer('A')">a</h3>
+                    <h3 class="list-group-item center " id="B" onclick="checkAnswer('B')">b
+                    </h3>
+                    <h3 class="list-group-item center " id="C" onclick="checkAnswer('C')">c
+                    </h3>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div id="timer">
+                        <div id="counter"></div>
+                        <div id="btimeGauge"></div>
+                        <div id="timeGauge"></div>
+                    </div>
+                    <div class="col right" id="correct"></div>
+
+                    <div class="progress center">
+                        <div id="progress"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col align-self-end" id="correct"></div>
+        </div>
+        <div id="scoreContainer" style="display: none"></div>
+
+    </div>
+
+    <script src="assets/javascript/game.js">
+    </script>
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+</body>
+
+</html>
