@@ -16,58 +16,54 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Quiz-Game</title>
 </head>
+<!--body tag start here-->
 
 <body>
-
+    <!--used container used to make a page in grid-->
     <div class="container">
-
-        <h1 class="center" style="color:blue;" id="message">message</h1>
-        <h3 class="center bold" style="color:green;display:none;" id="heading">Quiz Qiuestions</h3>
-
-        <h2 class="center" style="color:red;" display="block" id="start">Start Quiz!</h2>
+        <!--massege greeting heading-->
+        <h1 class="center" id="message">message</h1>
+        <!--heading use in quiz-->
+        <h3 class="center bold" style="display:none;" id="heading">Quiz Qiuestions</h3>
+        <!--start quiz word with display block-->
+        <button class="center" id="start">Start Quiz!</button>
+        <!--quiz area start here-->
         <div class="card text-center" id="quiz" style="display:none">
-
             <div class="card-body center">
+                <!--questions-->
                 <h3 class="card-title" id="question">question</h3>
                 <div id="qImg"></div>
+                <!--optins of questin A,B and C-->
                 <div id="choices">
-
                     <h3 class="list-group-item center " id="A" onclick="checkAnswer('A')">a</h3>
                     <h3 class="list-group-item center " id="B" onclick="checkAnswer('B')">b
                     </h3>
                     <h3 class="list-group-item center " id="C" onclick="checkAnswer('C')">c
                     </h3>
-
-
                 </div>
-
-
             </div>
-
+            <!--correct answser counter container-->
             <h4 class="col right" id="correct"></h4>
+            <!--incorrect answser counter container-->
             <h4 class="col right" id="incorrect"></h4>
 
+            <!--timer cvontainer-->
             <div id="timer">
                 <div id="counter"></div>
                 <div id="btimeGauge"></div>
                 <div id="timeGauge"></div>
             </div>
-            <h4 class="col right" id="correct"></h4>
-
+            <!--progress conatiner-->
             <div class="progress center">
                 <div id="progress"></div>
             </div>
 
-
-
-            <div class="text-right" id="correct"></div>
         </div>
+        <!--scorereader container with display id none-->
         <div id="scoreContainer" style="display: none"></div>
-
-    </div>
-
-    <script src="assets/javascript/game.js">
-    </script>
+        <!--html file connect with js file-->
+        <script src="assets/javascript/game.js">
+        </script>
 
 
     </div>

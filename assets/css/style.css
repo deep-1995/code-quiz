@@ -1,4 +1,24 @@
-
+#start{
+    background-color:darkgreen; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50px;
+    margin-left: 430px;
+    margin-right:300px;
+    margin-bottom: 100px;;
+   
+  }
+  #restart{
+    background-color:darkgreen; 
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+     margin-left: 320px;
+  }
 
 #timer{
     
@@ -27,7 +47,7 @@
 #scoreContainer{
     margin : 20px auto;
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.7;
     height: 300px;
     width : 700px;
     border-radius: 5px;
@@ -37,17 +57,27 @@
 }
 #scoreContainer img{
     position: absolute;
-    top:100px;
-    left:325px;
+    top:50px;
+    left:305px;
 }
 #scoreContainer p{
     position: absolute;
     display: block;
-    width : 59px;
+    width : 25px;
     height :59px;
     top:130px;
     left:325px;
     font-size: 4rem;
     font-weight: bold;
     text-align: center;
+}
+header{
+    position: absolute;
+    display: block;
+    height: 59px;
+    top:140px;
+    left:230px;
+    text-align: center;
+    font-size: 3rem;
+
 }

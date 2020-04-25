@@ -1,5 +1,5 @@
+// call all id's form html file
 const start = document.getElementById("start");
-const heading = document.getElementById("heading");
 const message = document.getElementById("message");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
@@ -14,7 +14,11 @@ const progress = document.getElementById("progress");
 const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
 const scoreDiv = document.getElementById("scoreContainer");
+const restart = document.getElementById("restart");
 
+
+
+// question add using array in array i used odjects
 let questions = [
     {
         question: "1. A piece of ice is dropped in a vesel containing kerosene. When ice melts, the level of kerosene will",
@@ -48,48 +52,45 @@ let questions = [
 
 ];
 
-// create some variables
 
-const lastQuestion = questions.length - 1;
+//Empty variables to store values later
 let runningQuestion = 0;
-let count = 0;
-const questionTime = 10; // 10s
-const gaugeWidth = 150; // 150px
-const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
+
+
+//Counter Variables
+let count = 0;
 let score = 0;
 let wrong = 0;
+// give 10sec to each question
+const questionTime = 10;
+// assign the width of guage
+const gaugeWidth = 150; // 150px
 
-// render a question
+
+
+// defined last question index value
+const lastQuestion = questions.length - 1;
+//gaugeunit value
+const gaugeUnit = gaugeWidth / questionTime;
+
+
+
+//assign the value of question
 function renderQuestion() {
     let q = questions[runningQuestion];
-
     question.innerHTML = "<p>" + q.question + "</p>";
     qImg.innerHTML = "<img src=" + q.imgSrc + ">";
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
-}
+};
 
-start.addEventListener("click", startQuiz);
-
-// start quiz
-function startQuiz() {
-    start.style.display = "none";
-    message.style.display = "none";
-
-    renderQuestion();
-    quiz.style.display = "block";
-    heading.style.display = "block";
-    renderProgress();
-    renderCounter();
-    TIMER = setInterval(renderCounter, 1000); // 1000ms = 1s
-}
 
 // greeting message
 var today = new Date()
 var curHr = today.getHours()
-
+// greeting  message changed with time
 if (curHr >= 0 && curHr < 6) {
     message.innerHTML = 'What are you doing that early?';
 } else if (curHr >= 6 && curHr <= 12) {
@@ -99,50 +100,80 @@ if (curHr >= 0 && curHr < 6) {
 } else {
     message.innerHTML = 'Good Evening';
 }
-// render progress
+
+
+
+// start quiz
+start.addEventListener("click", startQuiz);
+function startQuiz() {
+    // when start button click it changed the property of start and message to invisible
+    start.style.display = "none";
+    message.style.display = "none";
+    renderQuestion();
+    //change quiz and heading to visible
+    quiz.style.display = "block";
+    heading.style.display = "block";
+    renderProgress();
+    timeCounter();
+    // set time one second is equal to 1000ms
+    TIMER = setInterval(timeCounter, 1000);
+};
+
+
+
+//  progress function
 function renderProgress() {
     for (let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
         progress.innerHTML += "<div class='prog' id=" + qIndex + "></div>";
     }
-}
+};
 
-// counter render
 
-function renderCounter() {
+
+// counter start here
+function timeCounter() {
+    // if count less than or equal to question time then we add text in counter and increase the width of guage
     if (count <= questionTime) {
-        counter.innerHTML = count;
+        counter.textContent = count;
         timeGauge.style.width = count * gaugeUnit + "px";
         count++
-    } else {
+    }
+    // if count =0 then
+    else {
         count = 0;
-        // change progress color to red
+        // call awser is wrong function
         answerIsWrong();
         if (runningQuestion < lastQuestion) {
             runningQuestion++;
             renderQuestion();
         } else {
-            // end the quiz and show the score
+            // end the quiz and show the score board
             clearInterval(TIMER);
             scoreRender();
         }
     }
-}
+};
 
-// checkAnwer
+
+
+// checkAnwer is coorect or not by comparing with correct in question array's objects
 
 function checkAnswer(answer) {
+    // answer is correct
     if (answer == questions[runningQuestion].correct) {
-        // answer is correct
+        // add 1 to score 
         score++;
-        // change progress color to green
         answerIsCorrect();
-    } else {
-        // answer is wrong
+    }
+    // answer is wrong
+    else {
+        // add 1 to wrong 
         wrong++
-        // change progress color to red
         answerIsWrong();
     }
+    // after checking anwser is correct or not then we assign count zero 
     count = 0;
+    // if it isn't last question then run next question
     if (runningQuestion < lastQuestion) {
         runningQuestion++;
         renderQuestion();
@@ -151,24 +182,33 @@ function checkAnswer(answer) {
         clearInterval(TIMER);
         scoreRender();
     }
-}
+};
+
+
 
 // answer is correct
 function answerIsCorrect() {
+    // add text content in correct
     correct.textContent = "correct :" + score;
-
 }
+
 
 // answer is Wrong
 function answerIsWrong() {
-    incorrect.textContent = "incorrect :" + wrong;
+    // add text content in incorrect
+    incorrect.textContent = "incorrect :" + wrong + " ";
 }
 
-// score render
+
+
+// score board
 function scoreRender() {
+    // block score to display the borad visible
     scoreDiv.style.display = "block";
     quiz.style.display = "none";
     heading.textContent = "Result";
+    //use prompt used to enter the name
+    var name = prompt("write your full name");
 
 
     // calculate the amount of question percent answered by the user
@@ -180,11 +220,18 @@ function scoreRender() {
             (scorePerCent >= 40) ? "assets/image/3.png" :
                 (scorePerCent >= 20) ? "assets/image/2.png" :
                     "assets/image/1.png";
-
-    scoreDiv.innerHTML = "<img src=" + img + ">";
+    // add some inner html in scoreDiv which is display on the score board 
+    scoreDiv.innerHTML += "<img src=" + img + ">";
+    scoreDiv.innerHTML += "<header>" + name + "</header > ";
     scoreDiv.innerHTML += "<p>" + scorePerCent + "%</p>";
-
 }
-// change the baclground color 
 
-document.body.style.backgroundColor = `lightgrey`;
+
+
+// add background image on body
+document.body.style.backgroundImage = "url('assets/image/bg.png')";
+// add text color of mesage, heading and start button
+message.style.color = "white";
+heading.style.color = "white";
+start.style.color = "red";
+
